@@ -26,5 +26,16 @@ public class Meliso {
             System.out.println(":" + item);
             item = 0;
         }
+
+        String s = "Ы";
+        byte [] b = s.getBytes();
+        for (int i = 0; i < b.length; i++) {
+            System.out.print(((int)b[i] ^ -1 << 8)+" ");
+        }
+        System.out.print
+        for (int i = 0; i < b.length; i++) {
+            System.out.print(( (int) b[i] ^ (-1 << 8)) + " ");
+        }
+
     }
 }
