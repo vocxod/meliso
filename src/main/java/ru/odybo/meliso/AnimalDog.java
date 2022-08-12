@@ -9,10 +9,6 @@ package ru.odybo.meliso;
  * @author vragos
  */
 
-class BlinkedAnEye implement ActionListener {
-    
-}
-
 class Animal {
     public String name;
     

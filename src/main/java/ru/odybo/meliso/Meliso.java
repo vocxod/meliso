@@ -16,6 +16,15 @@ public class Meliso {
         String[] weekends = {"Friday", "Saturday", "Sunday"};
         assert weekends.length == 3;
         System.out.println("There are " + weekends.length + "  weekends in a week");
-
+        int[] myData = {1, 2, 3, 4};
+        for (int i = 0; i < myData.length; i++ ) {
+            System.out.println(":" + myData[i]);
+            myData[i] = 0;
+        }
+        System.out.println("***");
+        for (int item: myData) {
+            System.out.println(":" + item);
+            item = 0;
+        }
     }
 }
