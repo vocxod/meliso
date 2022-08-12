@@ -1,8 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ * No licence.
  */
 package ru.odybo.meliso;
+
+import java.io.*;
 
 /**
  *
@@ -12,19 +13,28 @@ package ru.odybo.meliso;
 
 public class Meliso {
 
-    public static void main(String args[]) {
-        String[] weekends = {"Friday", "Saturday", "Sunday"};
-        assert weekends.length == 3;
-        System.out.println("There are " + weekends.length + "  weekends in a week");
-        int[] myData = {1, 2, 3, 4};
-        for (int i = 0; i < myData.length; i++ ) {
-            System.out.println(":" + myData[i]);
-            myData[i] = 0;
+    public static void myPrint(InputStream inputStream, OutputStream outputStream) throws IOException {
+        byte[] inData = new byte[16];
+        int nRead;
+        try (inputStream; outputStream) {
+            while (( nRead = inputStream.read(inData, 0, inData.length)) != -1 ) {
+                for (int i = 0; i < nRead; i++ ) {
+                    if ( (inData[i] % 2) == 0 ) {
+                        // System.out.print(inData[i] + ":");
+                        outputStream.write(inData[i]);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            throw new IOException();
         }
-        System.out.println("***");
-        for (int item: myData) {
-            System.out.println(":" + item);
-            item = 0;
-        }
+    }
+
+    public static void main(String args[]) throws IOException {
+        InputStream is = new ByteArrayInputStream(new byte[] { 1, 2, 3, 4, 5, 6, 7 });
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        myPrint(is, buffer);
     }
 }
