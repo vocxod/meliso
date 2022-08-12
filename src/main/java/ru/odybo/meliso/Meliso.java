@@ -4,6 +4,9 @@
  */
 package ru.odybo.meliso;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
 /**
  *
  * @author vragos
@@ -12,19 +15,11 @@ package ru.odybo.meliso;
 
 public class Meliso {
 
-    public static void main(String args[]) {
-        String[] weekends = {"Friday", "Saturday", "Sunday"};
-        assert weekends.length == 3;
-        System.out.println("There are " + weekends.length + "  weekends in a week");
-        int[] myData = {1, 2, 3, 4};
-        for (int i = 0; i < myData.length; i++ ) {
-            System.out.println(":" + myData[i]);
-            myData[i] = 0;
-        }
-        System.out.println("***");
-        for (int item: myData) {
-            System.out.println(":" + item);
-            item = 0;
-        }
+    public static void main(String args[]) throws IOException {
+        OutputStream outputStream       = new FileOutputStream("output_stream.txt");
+        Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.US_ASCII);
+        // writer.append("QQЙ");
+        writer.write('ф');
+        writer.close();
     }
 }
