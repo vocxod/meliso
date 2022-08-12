@@ -32,7 +32,7 @@ public class Meliso {
         for (int i = 0; i < b.length; i++) {
             System.out.print(((int)b[i] ^ -1 << 8)+" ");
         }
-        System.out.print
+        System.out.print("***");
         for (int i = 0; i < b.length; i++) {
             System.out.print(( (int) b[i] ^ (-1 << 8)) + " ");
         }
