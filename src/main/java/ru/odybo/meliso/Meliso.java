@@ -4,6 +4,11 @@
  */
 package ru.odybo.meliso;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.Scanner;
+
 /**
  *
  * @author vragos
@@ -12,19 +17,26 @@ package ru.odybo.meliso;
 
 public class Meliso {
 
-    public static void main(String args[]) {
-        String[] weekends = {"Friday", "Saturday", "Sunday"};
-        assert weekends.length == 3;
-        System.out.println("There are " + weekends.length + "  weekends in a week");
-        int[] myData = {1, 2, 3, 4};
-        for (int i = 0; i < myData.length; i++ ) {
-            System.out.println(":" + myData[i]);
-            myData[i] = 0;
+    public static void main(String... args) throws IOException {
+        double result = 0.0D;
+        Scanner scanner
+        if (args.length == 1) {
+            // input data from file in first param
+            System.out.printf(Locale.ENGLISH, "Use file %s as input stream", args[0]);
+            scanner = new Scanner(new File( args[0]));
+        } else {
+            // input data from user input Ctrl-D end of input
+            scanner = new Scanner(System.in).useDelimiter("\n||\\s");
         }
-        System.out.println("***");
-        for (int item: myData) {
-            System.out.println(":" + item);
-            item = 0;
+        while (scanner.hasNext()) {
+            if (scanner.hasNextDouble()) {
+                result += scanner.nextDouble();
+            } else {
+                continue;
+            }
         }
+        System.out.printf(Locale.ENGLISH, "%.6D", result);
     }
+
 }
+
