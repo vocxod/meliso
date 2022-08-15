@@ -4,6 +4,10 @@
  */
 package ru.odybo.meliso;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 /**
  *
  * @author vragos
@@ -12,10 +16,19 @@ package ru.odybo.meliso;
 
 public class Meliso {
 
-    public static void main(String args[]) {
+    public static void fileOutputStreamByteSubSequence(
+            String file, String data) throws IOException {
+        byte[] bytes = data.getBytes();
+        try (OutputStream out = new FileOutputStream(file)) {
+            out.write(bytes, 6, 6);
+        }
+    }
+
+    public static void main(String args[]) throws IOException {
+        /*
         String[] weekends = {"Friday", "Saturday", "Sunday"};
-        assert weekends.length == 3;
-        System.out.println("There are " + weekends.length + "  weekends in a week");
+        assert weekends.length == 2;
+        String outText = "There are " + weekends.length + "  weekends in a week";
         int[] myData = {1, 2, 3, 4};
         for (int i = 0; i < myData.length; i++ ) {
             System.out.println(":" + myData[i]);
@@ -26,5 +39,9 @@ public class Meliso {
             System.out.println(":" + item);
             item = 0;
         }
+        */
+        String outText = args[0];
+        System.out.println(outText);
+        fileOutputStreamByteSubSequence("tmp.file", (String) outText);
     }
 }
