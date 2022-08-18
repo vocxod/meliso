@@ -7,12 +7,34 @@ package ru.odybo.meliso;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Optional;
 
 /**
  *
  * @author vragos
  */
 
+class Example<T> {
+    T data;
+    T[] arrayData[] = null;
+
+    public <T> Example(T data) {
+        //this.data = data;
+    }
+    public void tryNewData(Object obj) {
+        T ex = (T) obj;
+        
+        System.out.println(ex);
+        Optional<T> ex2 = Optional.empty();
+        System.out.println(ex2);
+
+        if( ex2 instanceof Optional<T>) {
+            System.out.println("instanse of");
+        } else {
+            System.out.println("NOT instanse of");
+        }
+    }
+}
 
 public class Meliso {
 
@@ -25,23 +47,7 @@ public class Meliso {
     }
 
     public static void main(String args[]) throws IOException {
-        /*
-        String[] weekends = {"Friday", "Saturday", "Sunday"};
-        assert weekends.length == 2;
-        String outText = "There are " + weekends.length + "  weekends in a week";
-        int[] myData = {1, 2, 3, 4};
-        for (int i = 0; i < myData.length; i++ ) {
-            System.out.println(":" + myData[i]);
-            myData[i] = 0;
-        }
-        System.out.println("***");
-        for (int item: myData) {
-            System.out.println(":" + item);
-            item = 0;
-        }
-        */
-        String outText = args[0];
-        System.out.println(outText);
-        fileOutputStreamByteSubSequence("tmp.file", (String) outText);
+        Example<String> es = new Example<String>("");
+        es.tryNewData(new Object());
     }
 }
