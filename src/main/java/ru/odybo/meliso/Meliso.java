@@ -24,24 +24,11 @@ public class Meliso {
         }
     }
 
+    enum DoW {
+            MON, THU, WED, FRY
+    }
+
     public static void main(String args[]) throws IOException {
-        /*
-        String[] weekends = {"Friday", "Saturday", "Sunday"};
-        assert weekends.length == 2;
-        String outText = "There are " + weekends.length + "  weekends in a week";
-        int[] myData = {1, 2, 3, 4};
-        for (int i = 0; i < myData.length; i++ ) {
-            System.out.println(":" + myData[i]);
-            myData[i] = 0;
-        }
-        System.out.println("***");
-        for (int item: myData) {
-            System.out.println(":" + item);
-            item = 0;
-        }
-        */
-        String outText = args[0];
-        System.out.println(outText);
-        fileOutputStreamByteSubSequence("tmp.file", (String) outText);
+        System.out.println("Static box is: " + Box.getBox());
     }
 }
