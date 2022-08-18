@@ -88,46 +88,62 @@ public class Meliso {
                 break;
             case "d":
                 // deserialize
+                Animal[] animalArray = null;
                 try {
                     FileInputStream fis = new FileInputStream(filename);
                     ObjectInputStream ois = new ObjectInputStream(fis);
                     animalLength = ois.readInt();
                     System.out.println(ANSI_CL0 + "Animal length: " + animalLength + ANSI_RESET);
-                    Animal[] animalArray = new Animal[animalLength];
+                    animalArray = new Animal[animalLength];
                     for (int i = 0; i < animalLength; i++) {
                         animalArray[i] = (Animal) ois.readObject();
                         System.out.print(ANSI_CL0 + animalArray[i].toString() + ANSI_RESET + ":");
                     }
                     ois.close();
-                } catch (NegativeArraySizeException ne) {
-                    System.out.print(ANSI_CL0);
-                    ne.printStackTrace();
-                    System.out.println(ne.getMessage());
-                    System.out.println(ne.getCause() + ANSI_RESET);
                 } catch (EOFException ee) {
                     System.out.print(ANSI_CL1);
                     ee.printStackTrace();
                     System.out.println(ee.getMessage());
                     System.out.println(ee.getCause() + ANSI_RESET);
-                } catch (InvalidClassException e) {
+                } catch (NegativeArraySizeException ne) {
+                    System.out.print(ANSI_CL0);
+                    ne.printStackTrace();
+                    System.out.println(ne.getMessage());
+                    System.out.println(ne.getCause() + ANSI_RESET);
+                } catch (ClassNotFoundException cne) {
+                    System.out.print(ANSI_CL3);
+                    cne.printStackTrace();
+                    System.out.println(cne.getMessage());
+                    System.out.println(cne.getCause() + ANSI_RESET);
+                } catch (InvalidClassException ice) {
                     System.out.print(ANSI_CL2);
-                    e.printStackTrace();
-                    System.out.println(e.getMessage());
-                    System.out.println(e.getCause() + ANSI_RESET);
+                    ice.printStackTrace();
+                    System.out.println(ice.getMessage());
+                    System.out.println(ice.getCause() + ANSI_RESET);
+                } catch (IOException ioe) {
+                    System.out.print(ANSI_CL4);
+                    ioe.printStackTrace();
+                    System.out.println(ioe.getMessage());
+                    System.out.println(ioe.getCause() + ANSI_RESET);
+                } catch (ClassCastException cce){
+                    System.out.print(ANSI_CL5);
+                    cce.printStackTrace();
+                    System.out.println(cce.getMessage());
+                    System.out.println(cce.getCause() + ANSI_RESET);
                 } catch (RuntimeException re) {
                     System.out.print(ANSI_CL3);
                     re.printStackTrace();
                     System.out.println(re.getMessage());
                     System.out.println(re.getCause() + ANSI_RESET);
-                }  catch (Exception re) {
+                }  catch (Exception e) {
                     System.out.print(ANSI_CL4);
-                    re.printStackTrace();
-                    System.out.println(re.getMessage());
-                    System.out.println(re.getCause() + ANSI_RESET);
+                    e.printStackTrace();
+                    System.out.println(e.getMessage());
+                    System.out.println(e.getCause() + ANSI_RESET);
                 }
                 break;
             default:
-                System.out.println("");
+                System.out.println("Unrecognized command");
         }
         System.out.println(ANSI_CL2 + "Quit" + ANSI_RESET);
 
